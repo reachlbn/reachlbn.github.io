@@ -89,7 +89,7 @@
             <div class="row" id="cccm">
                 <div class="col-md-10">
                    <p id="dem"><h3>Demographic</h3></p>
-                
+
                      <div class="row">
                       <div  class="col-md-3">
                         <div  class="num_of_hou" id="cccm" class="dc-chart">
@@ -210,6 +210,9 @@
                 </div>
             </div>
         </div>
+        <br><br>
+        <div id="reachbar"><a href="http://www.reach-initiative.org/"><img src="images/partner/reach-initiative.jpg" style="border:none;height:40px" /></a></div>
+        <br>
     </div>
 
 
@@ -232,7 +235,7 @@
 
 /*     Markers      */
 //var numberFormat = d3.format(",f");
-  
+
 d3.tsv("data/Interagency_FloodAssessment.tsv", function(data) {
  // drawMarkerSelect(data);
   drawMarkerArea(data);
@@ -293,7 +296,7 @@ function drawMarkerArea(data) {
       .dimension(facilities)
       .group(facilitiesGroup)
       .width(950)
-      .height(590)
+      .height(400)
       .center([34.53484,36.16699])
       .zoom(11)
       .cluster(true)
@@ -357,9 +360,9 @@ function drawMarkerArea(data) {
 
  // var num_of_houDim = xf.dimension(function(d) { return +d['num_of_hou']; });
   var num_of_houDim = xf.dimension(function (d) { if( d['num_of_households_r']<10){return 'a 0-10'} if(+d['num_of_households_r']>10 && +d['num_of_households_r']<25){return 'b 10-25'} if(+d['num_of_households_r']>25 && +d['num_of_households_r']<100){return 'c 25-100'} if(+d['num_of_households_r']>100){return 'd more than 100'};});
-  
+
   var num_of_houGroup = num_of_houDim.group();
-    
+
     dc.rowChart("#cccm .num_of_hou",groupname)
           .dimension(num_of_houDim)
           .group(num_of_houGroup)
@@ -373,7 +376,7 @@ function drawMarkerArea(data) {
           .xAxis().ticks(4).tickFormat(d3.format("s"));
 
   var num_of_males_rDim = xf.dimension(function (d) { if( d['num_of_males_r']<10){return 'a 0-10'} if(+d['num_of_males_r']>10 && +d['num_of_males_r']<25){return 'b 10-25'} if(+d['num_of_males_r']>25 && +d['num_of_males_r']<100){return 'c 25-100'} if(+d['num_of_males_r']>100){return 'd more than 100'};});var num_of_males_rGroup = num_of_males_rDim.group();dc.rowChart("#cccm .num_of_males_r",groupname).dimension(num_of_males_rDim).group(num_of_males_rGroup).width(250).height(150).renderLabel(true).ordering(function (p) { return -p.value;}).colors(['#EE5859']).colorDomain([0,0]).colorAccessor(function(d, i){return 1;}).xAxis().ticks(4).tickFormat(d3.format("s"));
-  
+
   var num_of_females_rDim = xf.dimension(function (d) { if( d['num_of_females_r']<10){return 'a 0-10'} if(+d['num_of_females_r']>10 && +d['num_of_females_r']<25){return 'b 10-25'} if(+d['num_of_females_r']>25 && +d['num_of_females_r']<100){return 'c 25-100'} if(+d['num_of_females_r']>100){return 'd more than 100'};});var num_of_females_rGroup = num_of_females_rDim.group();dc.rowChart("#cccm .num_of_females_r",groupname).dimension(num_of_females_rDim).group(num_of_females_rGroup).width(250).height(150).renderLabel(true).ordering(function (p) { return -p.value;}).colors(['#EE5859']).colorDomain([0,0]).colorAccessor(function(d, i){return 1;}).xAxis().ticks(4).tickFormat(d3.format("s"));
 
   var num_of_newborns_rDim = xf.dimension(function(d) { return d.num_of_newborns_r; });var num_of_newborns_rGroup = num_of_newborns_rDim.group();dc.rowChart("#cccm .num_of_newborns_r",groupname).dimension(num_of_newborns_rDim).group(num_of_newborns_rGroup).width(250).height(150).renderLabel(true).ordering(function (p) { return -p.value;}).colors(['#EE5859']).colorDomain([0,0]).colorAccessor(function(d, i){return 1;}).xAxis().ticks(4).tickFormat(d3.format("s"));
@@ -416,7 +419,7 @@ function drawMarkerArea(data) {
   var sewageDim = xf.dimension(function(d) { return d.sewage; });var sewageGroup = sewageDim.group();dc.rowChart("#cccm .sewage",groupname).dimension(sewageDim).group(sewageGroup).width(250).height(150).renderLabel(true).ordering(function (p) { return -p.value;}).colors(['#EE5859']).colorDomain([0,0]).colorAccessor(function(d, i){return 1;}).xAxis().ticks(4).tickFormat(d3.format("s"));
   var streamDim = xf.dimension(function(d) { return d.stream; });var streamGroup = streamDim.group();dc.rowChart("#cccm .stream",groupname).dimension(streamDim).group(streamGroup).width(250).height(150).renderLabel(true).ordering(function (p) { return -p.value;}).colors(['#EE5859']).colorDomain([0,0]).colorAccessor(function(d, i){return 1;}).xAxis().ticks(4).tickFormat(d3.format("s"));
   var sewage_waterDim = xf.dimension(function(d) { return d.sewage_water; });var sewage_waterGroup = sewage_waterDim.group();dc.rowChart("#cccm .sewage_water",groupname).dimension(sewage_waterDim).group(sewage_waterGroup).width(250).height(150).renderLabel(true).ordering(function (p) { return -p.value;}).colors(['#EE5859']).colorDomain([0,0]).colorAccessor(function(d, i){return 1;}).xAxis().ticks(4).tickFormat(d3.format("s"));
-  
+
 
   var shelters_totalDim = xf.dimension(function (d) { if( d['shelters_total']<5){return 'a 0-5'} if(+d['shelters_total']>5 && +d['shelters_partially_destroyed']<10){return 'b 5-10'} if(+d['shelters_total']>10 && +d['shelters_total']<25){return 'c 10-25'} if(+d['shelters_total']>25){return 'd more than 250'};});var shelters_totalGroup = shelters_totalDim.group();dc.rowChart("#cccm .shelters_total",groupname).dimension(shelters_totalDim).group(shelters_totalGroup).width(250).height(150).renderLabel(true).ordering(function (p) { return -p.value;}).colors(['#EE5859']).colorDomain([0,0]).colorAccessor(function(d, i){return 1;}).xAxis().ticks(4).tickFormat(d3.format("s"));
   var shelters_partially_destroyedDim = xf.dimension(function (d) { if( d['shelters_partially_destroyed']<5){return 'a 0-5'} if(+d['shelters_partially_destroyed']>5 && +d['shelters_partially_destroyed']<10){return 'b 5-10'} if(+d['shelters_partially_destroyed']>10 && +d['shelters_partially_destroyed']<25){return 'c 10-25'} if(+d['shelters_partially_destroyed']>25){return 'd more than 250'};});var shelters_partially_destroyedGroup = shelters_partially_destroyedDim.group();dc.rowChart("#cccm .shelters_partially_destroyed",groupname).dimension(shelters_partially_destroyedDim).group(shelters_partially_destroyedGroup).width(250).height(150).renderLabel(true).ordering(function (p) { return -p.value;}).colors(['#EE5859']).colorDomain([0,0]).colorAccessor(function(d, i){return 1;}).xAxis().ticks(4).tickFormat(d3.format("s"));

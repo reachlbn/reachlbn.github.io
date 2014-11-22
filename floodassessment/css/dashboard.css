@@ -166,9 +166,14 @@ strong {
       width:950px;
       height:400px;
     }
+
+    #reachbar{
+      width:1000px;
+      height:40px;
+      background-color:#58585A;
+    }
     /*
     .pie {
       margin-left:30px;
     }
 */
-
