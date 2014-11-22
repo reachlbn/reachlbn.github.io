@@ -20,11 +20,41 @@ dc.leafletChart = function(_chart) {
     }).addTo(map);
   }
 */
-
+      
+    
   var _tiles=function(map) {
     L.tileLayer('http://otile2.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
+
+      baseMap ='http://otile2.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png';
+      sat="http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
+
+      clouds = 'http://{s}.tile.openweathermap.org/map/precipitation/{z}/{x}/{y}.png';
+            //citiesUrl = 'http://{s}.tiles.mapbox.com/v3/mapbox.world-bank-borders-fr/{z}/{x}/{y}.png';
+
+        var basem = new L.TileLayer(baseMap),
+            clo = new L.TileLayer(clouds),
+            satt = new L.TileLayer(sat);
+        
+
+
+        // http://map1.vis.earthdata.nasa.gov/wmts-geo/wmts.cgi?TIME=2014-11-21&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=MODIS_Terra_CorrectedReflectance_TrueColor&STYLE=&TILEMATRIXSET=EPSG4326_250m&TILEMATRIX=5&TILEROW=5&TILECOL=23&FORMAT=image%2Fjpeg
+
+        // LAYER CONTROLS
+        var baseMaps = {
+            "Sattelite":satt,
+            "Basemap":basem,
+        };
+
+        var overlayMaps = {
+        //"Cities": cities,
+        "Precipitations": clo
+        };
+
+        layersControl = new L.Control.Layers(baseMaps, overlayMaps);
+
+        map.addControl(layersControl); 
   }
 
   _chart.doRender = function() {
