@@ -43,7 +43,7 @@ dc.leafletChart = function(_chart) {
 
         // LAYER CONTROLS
         var baseMaps = {
-            "Sattelite":satt,
+            "Satellite":satt,
             "Basemap":basem,
         };
 
