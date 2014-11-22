@@ -20,8 +20,8 @@ dc.leafletChart = function(_chart) {
     }).addTo(map);
   }
 */
-      
-    
+
+
   var _tiles=function(map) {
     L.tileLayer('http://otile2.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -32,11 +32,13 @@ dc.leafletChart = function(_chart) {
 
       clouds = 'http://{s}.tile.openweathermap.org/map/precipitation/{z}/{x}/{y}.png';
             //citiesUrl = 'http://{s}.tiles.mapbox.com/v3/mapbox.world-bank-borders-fr/{z}/{x}/{y}.png';
+      is = 'http://b.tiles.mapbox.com/v3/pierrereach.3wwx2ume/{z}/{x}/{y}.png'
 
         var basem = new L.TileLayer(baseMap),
             clo = new L.TileLayer(clouds),
+            iss = new L.TileLayer(is),
             satt = new L.TileLayer(sat);
-        
+
 
 
         // http://map1.vis.earthdata.nasa.gov/wmts-geo/wmts.cgi?TIME=2014-11-21&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=MODIS_Terra_CorrectedReflectance_TrueColor&STYLE=&TILEMATRIXSET=EPSG4326_250m&TILEMATRIX=5&TILEROW=5&TILECOL=23&FORMAT=image%2Fjpeg
@@ -49,12 +51,13 @@ dc.leafletChart = function(_chart) {
 
         var overlayMaps = {
         //"Cities": cities,
-        "Precipitations": clo
+        "Precipitations": clo,
+        "IS Number of shelter": iss
         };
 
         layersControl = new L.Control.Layers(baseMaps, overlayMaps);
 
-        map.addControl(layersControl); 
+        map.addControl(layersControl);
   }
 
   _chart.doRender = function() {
