@@ -55,7 +55,7 @@ dc.leafletChart = function(_chart) {
         "IS Number of shelter": iss
         };
 
-        layersControl = new L.Control.Layers(baseMaps, overlayMaps);
+        layersControl = new L.Control.Layers(baseMaps);
 
         map.addControl(layersControl);
   }
