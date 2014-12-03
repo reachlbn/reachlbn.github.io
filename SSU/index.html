@@ -401,7 +401,7 @@ var unfinished_Garages_ICSgp = unfinished_Garages_ICSDim.group();
         .colorAccessor(function(d, i){return 1;})
         .xAxis().ticks(4).tickFormat(d3.format("s"));
 
-var Occupied_UnoccupiedDim = xf.dimension(function(d) { return d['unfinished_Garages_ICS']; });
+var Occupied_UnoccupiedDim = xf.dimension(function(d) { return d['Occupied_Unoccupied']; });
 var Occupied_Unoccupiedgp = Occupied_UnoccupiedDim.group();
 
   dc.rowChart("#cccm .Occupied_Unoccupied",groupname)
