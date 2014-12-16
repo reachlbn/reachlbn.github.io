@@ -56,14 +56,14 @@
 
     <div class="row">
       <div class="col-md-4"> 
-        <div id ="date"><h5>Number of activities per date </h5></div>
-        <div id="activity"><h5>Type of Activities</h5></div>
-        <div id="indicator"><h5>Indicators (unit distributed)</h5></div>
+        <div id ="date"><h5>Activities Over Time</h5></div>
+        <div id="activity"><h5>Activities Conducted</h5></div>
+        <div id="indicator"><h5>Assistance Provided</h5></div>
       </div>
       <div class="col-md-4">
         <div id ="partner"><h5>Partner</h5></div>
       </div>
-      <div class="col-md-4" >Map<div id ="map"></div></div>
+      <div class="col-md-4" ><p></p><div id ="map"></div></div>
     </div>
 
 
@@ -100,10 +100,10 @@ var mapChart            = dc.geoChoroplethChart("#map",groupname);
 
 d3.csv("aggregated_AI_myn.csv", function(error, experiments) {
 
-  var dateFormat = d3.time.format("%m/%Y");;
+  var dateFormat = d3.time.format("%m/%d/%Y");
 
 experiments.forEach(function (d) {
-    d.dd  = dateFormat.parse(d.month);
+    d.dd  = dateFormat.parse(d.date);
 });
 var ndx                  = crossfilter(experiments),
       SubOffMapDim       = ndx.dimension(function(d) {return d.NAME_3;}),
@@ -128,7 +128,7 @@ d3.json("map_adm3.json", function (statesJson) {
 
 
 
-          .colorDomain([0, 50000])
+          .colorDomain([0, 25000])
           .colorCalculator(function (d) { return d ? mapChart.colors()(d) : '#ccc'; })
           .overlayGeoJson(statesJson.features, "state", function (d) {
               return d.properties.NAME_3;
@@ -150,10 +150,11 @@ d3.json("map_adm3.json", function (statesJson) {
   indicatorChart
           .width(350)
           .height(200)
-          .slicesCap(7)
+          //.slicesCap(7)
           //.colors(['#EE5859'])
           //.colorDomain([0,0])
           .innerRadius(50)
+          .ordering(function (p) { return -p.value;})
           .dimension(IndicatorDim)
           .group(IndicatorGroup)
           //.legend(dc.legend());
