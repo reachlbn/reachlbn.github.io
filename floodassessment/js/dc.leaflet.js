@@ -58,6 +58,7 @@ dc.leafletChart = function(_chart) {
         layersControl = new L.Control.Layers(baseMaps, overlayMaps);
 
         map.addControl(layersControl);
+        map.scrollWheelZoom.disable();
   }
 
   _chart.doRender = function() {
