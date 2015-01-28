@@ -44,7 +44,7 @@
 		<div class="col-md-6">
 		<div class="Gaushe">
 				<!--<p style="color:red">This is a Paragraph</p>-->
-				<P class="parag_reachred">REACH Initiative is an IMPACT Initiatives, ACTED nad UNOSAT </P>
+				<P class="parag_reachred"><b>REACH Initiative</b> is an initiative ofIMPACT Initiatives, ACTED and UNOSAT </P>
 				<p >Eshmoun Building, 10th Floor </p>
 				<p>Damascus Street, Sodeco, Beirut</p>
 		</div>
@@ -74,15 +74,8 @@
 			.bindPopup("<b>REACH Beirut!</b>").openPopup();
 	
 	var popup = L.popup();
-	function onMapClick(e) {
-			popup
-				.setLatLng(e.latlng)
-				.setContent("You clicked the map at " + e.latlng.toString())
-				.openOn(map);
-		}
-
-	map.on('click', onMapClick);
-	map.scrollWheelZoom.disable();
+	
+		map.scrollWheelZoom.disable();
 
 
 	</script>
